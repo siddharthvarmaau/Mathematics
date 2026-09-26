@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATH141 · Siddharth's Mathematics</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f4f8; --surf: #ffffff; --bord: #cfd9e6;
+    --text: #2d3f52; --muted: #6b8096; --bright: #1a2b3c;
+    --green: #00a972; --blue: #0097e2; --navy: #1B3A5C; --red: #FF3621;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.75;
+    color: var(--text); background: var(--bg); min-height: 100vh;
+    padding: 56px 16px 100px;
+  }
+  main { max-width: 900px; margin: 0 auto; }
+
+  .back { font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: .05em; }
+  .back:hover { color: var(--red); }
+
+  .hero { text-align: center; padding: 32px 0 40px; margin-bottom: 20px; }
+  h1 {
+    font-family: 'Cinzel', serif; font-weight: 600; color: var(--bright);
+    font-size: clamp(28px, 5vw, 46px); letter-spacing: .05em;
+  }
+  .rule {
+    width: 80px; height: 2px; margin: 20px auto;
+    background: linear-gradient(90deg, var(--green), var(--blue));
+  }
+  .sub { color: var(--muted); font-size: 14px; letter-spacing: .05em; }
+
+  .section-title {
+    font-family: 'Cinzel', serif; font-size: 22px; font-weight: 600; color: var(--navy);
+    margin: 44px 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--bord);
+  }
+
+  .grid {
+    display: grid; gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  .card {
+    display: block; text-decoration: none; color: var(--text);
+    background: var(--surf); border: 1px solid var(--bord);
+    border-left: 5px solid var(--navy); border-radius: 8px;
+    padding: 22px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s, border-color .3s;
+  }
+  .card:hover {
+    transform: translateY(-3px); border-left-color: var(--red);
+    box-shadow: 0 6px 22px -6px rgba(27,58,92,.35);
+  }
+  .tag {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--red); font-weight: 500; margin-bottom: 6px;
+  }
+  .card h2 {
+    font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600;
+    color: var(--bright); line-height: 1.3; margin-bottom: 8px;
+  }
+  .card p { font-size: 13.5px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../">&larr; All courses</a>
+  <header class="hero">
+    <h1>MATH141</h1>
+    <div class="rule"></div>
+    <p class="sub">Foundations of Engineering Mathematics</p>
+  </header>
+  <div id="sections"></div>
+</main>
+
+<script>
+  // To add a card, copy one line in the right section and edit tag, title, desc and href.
+  // Spaces in file names are written as %20 in href.
+  const sections = [
+    { title: "Strand 1 · Calculus", cards: [
+      { tag: "Week 1", title: "Algebra Foundations", desc: "Sets, indices, surds, expansion &amp; factorisation", href: "S1_Week1_Algebra_Foundations.html" },
+      { tag: "Week 2", title: "Equations, Inequalities &amp; Curves", desc: "Solving equations, inequalities &amp; curve sketching", href: "S1_Week2_Equations_Inequalities_Curves.html" },
+      { tag: "Week 3", title: "Logs, Trig &amp; Log-Log Graphs", desc: "Logarithms, basic trigonometry &amp; log-log graphs", href: "S1_Week3_Logs_Trig_LogLogGraphs.html" },
+      { tag: "Week 4", title: "Further Trig &amp; Complex Numbers", desc: "Further trigonometry &amp; complex numbers", href: "S1_Week4_FurtherTrig_ComplexNumbers.html" },
+      { tag: "Week 5", title: "De Moivre &amp; Functions", desc: "De Moivre's theorem &amp; introduction to functions", href: "S1_Week5_DeMoivre_Functions.html" },
+      { tag: "Week 6", title: "Composition &amp; Inverses", desc: "Function composition, one-to-one &amp; inverse functions", href: "S1_Week6_Composition_OneToOne_Inverse.html" },
+      { tag: "Week 7", title: "Parametric Curves &amp; the Derivative", desc: "Parametric curves, special functions &amp; the definition of the derivative", href: "S1_Week7_Parametric_SpecialFunctions_Derivative.html" },
+      { tag: "Week 8", title: "Differentiation Rules", desc: "Differentiation rules, higher derivatives &amp; parametric/implicit differentiation", href: "S1_Week8_DiffRules_HigherDeriv_ParametricImplicit.html" },
+      { tag: "Week 9", title: "Inverse Derivatives &amp; Hyperbolics", desc: "Derivative of an inverse, logarithmic differentiation &amp; hyperbolic functions", href: "S1_Week9_InverseDeriv_LogDiff_Hyperbolic.html" },
+      { tag: "Week 10", title: "Applications &amp; Antidifferentiation", desc: "Applications of differentiation &amp; antidifferentiation", href: "S1_Week10_Applications_Antidifferentiation.html" },
+      { tag: "Week 11", title: "Definite Integrals &amp; Substitution", desc: "Definite integrals, area &amp; integration by substitution", href: "S1_Week11_DefiniteIntegral_Area_Substitution.html" },
+      { tag: "Week 12", title: "Integration Summary &amp; Exam Review", desc: "Integration summary, average value &amp; comprehensive exam review", href: "S1_Week12_IntegrationSummary_ExamReview.html" },
+      { tag: "Week 13", title: "Mock Exam", desc: "The complete calculus strand", href: "S1_Week13_MockExam_FullReview.html" },
+      { tag: "Reference", title: "Integration Formula Sheet", desc: "Standard integrals and techniques for Calculus 1", href: "Integration%20Formula%20Sheet%20Calc%201.html" },
+    ]},
+    { title: "Strand 2 · Linear Algebra", cards: [
+      { tag: "Week 1", title: "Matrix Fundamentals", desc: "Index notation, sigma notation &amp; matrix fundamentals", href: "S2_Week1_Matrix_Fundamentals.html" },
+      { tag: "Week 2", title: "Multiplication &amp; Determinants", desc: "Matrix multiplication &amp; determinants", href: "S2_Week2_Multiplication_Determinants.html" },
+      { tag: "Week 3", title: "Row Operations, REF, RREF &amp; Rank", desc: "Solving systems with row operations", href: "S2_Week3_RowOps_REF_RREF_Rank.html" },
+      { tag: "Week 4", title: "Cramer's Rule &amp; Inverses", desc: "Cramer's rule, inverse &amp; singular matrices", href: "S2_Week4_Cramers_Inverse_Singular.html" },
+      { tag: "Week 5", title: "Eigenvalues &amp; Eigenvectors", desc: "Eigenvalues, eigenvectors &amp; applications", href: "S2_Week5_Eigenvalues_Eigenvectors_Applications.html" },
+      { tag: "Week 6", title: "Vectors, Dot &amp; Cross", desc: "Magnitude, arithmetic, dot &amp; cross products", href: "S2_Week6_Vectors_Dot_Cross.html" },
+      { tag: "Week 7", title: "Unit Vectors &amp; Projections", desc: "Unit vectors, projections &amp; angles between vectors", href: "S2_Week7_UnitVectors_Projections_Angles.html" },
+      { tag: "Week 8", title: "Lines in 3D", desc: "Equations, distance &amp; classification", href: "S2_Week8_Lines_Distance_Classification.html" },
+      { tag: "Week 9", title: "Planes &amp; Triple Product", desc: "Planes, normal vectors &amp; the scalar triple product", href: "S2_Week9_Planes_TripleProduct_Angles.html" },
+      { tag: "Week 10", title: "Intersection of Planes", desc: "Intersection of planes &amp; systems of three planes", href: "S2_Week10_IntersectionOfPlanes_Systems.html" },
+      { tag: "Week 11", title: "Distances", desc: "Points, lines &amp; planes: the complete toolkit", href: "S2_Week11_Distances_PointsLinesPlanes.html" },
+      { tag: "Week 12", title: "Comprehensive Synthesis", desc: "Comprehensive vector geometry synthesis", href: "S2_Week12_ComprehensiveSynthesis.html" },
+      { tag: "Week 13", title: "Mock Exam", desc: "The complete linear algebra strand", href: "S2_Week13_MockExam_FullReview.html" },
+    ]},
+  ];
+
+  document.getElementById("sections").innerHTML = sections.map(s =>
+    `<h3 class="section-title">${s.title}</h3><div class="grid">` +
+    s.cards.map(c => `<a class="card" href="${c.href}"><div class="tag">${c.tag}</div><h2>${c.title}</h2><p>${c.desc}</p></a>`).join("") +
+    `</div>`
+  ).join("");
+</script>
+</body>
+</html>
