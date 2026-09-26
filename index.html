@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siddharth's Mathematics</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f4f8; --surf: #ffffff; --bord: #cfd9e6;
+    --text: #2d3f52; --muted: #6b8096; --bright: #1a2b3c;
+    --green: #00a972; --blue: #0097e2; --navy: #1B3A5C; --red: #FF3621;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.75;
+    color: var(--text); background: var(--bg); min-height: 100vh;
+    padding: 56px 16px 100px;
+  }
+  main { max-width: 900px; margin: 0 auto; }
+
+  .hero { text-align: center; padding: 40px 0; margin-bottom: 40px; }
+  h1 {
+    font-family: 'Cinzel', serif; font-weight: 600; color: var(--bright);
+    font-size: clamp(28px, 5vw, 46px); letter-spacing: .05em;
+  }
+  .rule {
+    width: 80px; height: 2px; margin: 20px auto;
+    background: linear-gradient(90deg, var(--green), var(--blue));
+  }
+  .sub { color: var(--muted); font-size: 14px; letter-spacing: .05em; }
+
+  .grid {
+    display: grid; gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  .card {
+    display: block; text-decoration: none; color: var(--text);
+    background: var(--surf); border: 1px solid var(--bord);
+    border-left: 5px solid var(--navy); border-radius: 8px;
+    padding: 22px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s, border-color .3s;
+  }
+  .card:hover {
+    transform: translateY(-3px); border-left-color: var(--red);
+    box-shadow: 0 6px 22px -6px rgba(27,58,92,.35);
+  }
+  .tag {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--red); font-weight: 500; margin-bottom: 6px;
+  }
+  .card h2 {
+    font-family: 'Cinzel', serif; font-size: 20px; font-weight: 600;
+    color: var(--bright); line-height: 1.3; margin-bottom: 8px;
+  }
+  .card p { font-size: 13.5px; color: var(--muted); }
+  .placeholder {
+    border-style: dashed; border-left: 5px solid var(--bord);
+    box-shadow: none; cursor: default;
+  }
+  .placeholder:hover { transform: none; box-shadow: none; border-left-color: var(--bord); }
+  .placeholder .tag { color: var(--muted); }
+  .placeholder h2 { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <h1>Siddharth's Mathematics</h1>
+    <div class="rule"></div>
+    <p class="sub">Study guides &amp; practice material</p>
+  </header>
+  <div class="grid" id="cards"></div>
+</main>
+
+<script>
+  // To add a card, copy one line below and edit tag, title, desc and href.
+  // Leave href as "" to show a greyed-out placeholder card with no link.
+  // Spaces in file names are written as %20 in href.
+  const cards = [
+    { tag: "Calculus 1", title: "Integration Formula Sheet", desc: "Standard integrals and techniques for Calculus 1", href: "Integration%20Formula%20Sheet%20Calc%201.html" },
+    { tag: "Coming soon", title: "replace file name here", desc: "", href: "" },
+    { tag: "Coming soon", title: "replace file name here", desc: "", href: "" },
+    { tag: "Coming soon", title: "replace file name here", desc: "", href: "" },
+    { tag: "Coming soon", title: "replace file name here", desc: "", href: "" },
+    { tag: "Coming soon", title: "replace file name here", desc: "", href: "" },
+    { tag: "Coming soon", title: "replace file name here", desc: "", href: "" },
+  ];
+
+  document.getElementById("cards").innerHTML = cards.map(c => {
+    const inner = `<div class="tag">${c.tag}</div><h2>${c.title}</h2>${c.desc ? `<p>${c.desc}</p>` : ""}`;
+    return c.href
+      ? `<a class="card" href="${c.href}">${inner}</a>`
+      : `<div class="card placeholder">${inner}</div>`;
+  }).join("");
+</script>
+</body>
+</html>
